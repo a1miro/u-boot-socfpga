@@ -1,0 +1,6 @@
+SoCFPGA Agilex5 based iG58M development platform
+M:	IP Support <support.ip@iwave-global.com>
+S:	Maintained
+F:	board/intel/agilex5-iG58m/
+F:	include/configs/socfpga_agilex5_iG58m.h
+F:	configs/socfpga_agilex5_iG58m_defconfig

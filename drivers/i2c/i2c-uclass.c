@@ -750,7 +750,7 @@ static int i2c_post_probe(struct udevice *dev)
 	struct dm_i2c_bus *i2c = dev_get_uclass_priv(dev);
 
 	i2c->speed_hz = dev_read_u32_default(dev, "clock-frequency",
-					     I2C_SPEED_STANDARD_RATE);
+					     I2C_SPEED_FAST_RATE);
 
 	return dm_i2c_set_bus_speed(dev, i2c->speed_hz);
 #else

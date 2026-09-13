@@ -565,6 +565,12 @@ config I2C_EEPROM
 	help
 	  Enable a generic driver for EEPROMs attached via I2C.
 
+config FRU_EEPROM
+	bool "Enable driver for generic FMC+-attached EEPROMs"
+	depends on MISC
+	help
+	  Enable a generic driver for FMC+ EEPROMs attached via I2C.
+
 
 config SPL_I2C_EEPROM
 	bool "Enable driver for generic I2C-attached EEPROMs for SPL"

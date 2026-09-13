@@ -1014,6 +1014,12 @@ config SYS_MEMTEST_END
 	  test. If no arguments are given to mtest, default address is used
 	  as end address.
 
+config CMD_IG_MEMTEST
+        bool "Add support for DDR Memory Test"
+        help
+          This is used for FPGA and HPS, DDR memory tests such as data line integrity
+          test, address line integrity test and pattern test.
+
 endif
 
 config CMD_SHA1SUM

@@ -24,6 +24,7 @@ obj-$(CONFIG_SANDBOX) += i2c_eeprom_emul.o
 obj-$(CONFIG_USB_HUB_USB251XB) += usb251xb.o
 endif
 endif
+obj-$(CONFIG_FRU_EEPROM) += fru_eeprom.o
 ifdef CONFIG_SPL_OF_PLATDATA
 ifdef CONFIG_XPL_BUILD
 obj-$(CONFIG_SANDBOX) += spltest_sandbox.o

@@ -154,14 +154,35 @@
 
 #define CFG_EXTRA_ENV_SETTINGS \
 	"kernel_addr_r=0x82000000\0" \
-	"fdt_addr_r=0x86000000\0" \
+	"fdt_addr=0x86000000\0" \
+	"rbf_addr=0x87000000\0" \
 	"qspiscriptaddr=0x02110000\0" \
 	"scriptsize=0x00010000\0" \
 	"qspibootimageaddr=0x02120000\0" \
 	"bootimagesize=0x03200000\0" \
 	"loadaddr=" __stringify(CONFIG_SYS_LOAD_ADDR) "\0" \
 	"bootfile=" CONFIG_BOOTFILE "\0" \
+	"fdtimage=" CONFIG_DEFAULT_DEVICE_TREE ".dtb\0" \
+	"rbffile=IG58m.core.rbf\0" \
 	"mmcroot=/dev/mmcblk0p2\0" \
+	"usbroot=/dev/sda2\0" \
+	"tftproot=/dev/nfs\0" \
+	"bootcmd=run mmcload;run mmcboot\0" \
+	"mmcload=mmc rescan && mmcinfo; echo Copying Linux from MMC to RAM...;" \
+		"load mmc 0:1 ${loadaddr} ${bootfile};\0" \
+	"mmcboot=setenv bootargs " CONFIG_BOOTARGS \
+		" root=${mmcroot} rw rootwait;" \
+		"bootm ${loadaddr} \0" \
+	"usbload=usb start && usb info; echo Copying Linux from USB to RAM...;" \
+		"load usb 0:1 ${loadaddr} ${bootfile}\0" \
+	"usbboot=setenv bootargs " CONFIG_BOOTARGS \
+ 		" root=${usbroot} rw rootwait;" \
+		"bootm ${loadaddr} \0" \
+	"tftpload=echo Copying Linux from TFTP path to RAM...;" \
+		 "tftpboot ${loadaddr} ${serverip}:${bootfile}\0" \
+	"tftpboot=setenv bootargs " CONFIG_BOOTARGS \
+		 " root=${tftproot} rw ip=${ipaddr} nfsroot=${serverip}:${nfsroot},v3,tcp;" \
+ 		 "bootm ${loadaddr} \0" \
 	"mtdids=" CONFIG_MTDIDS_DEFAULT "\0" \
 	"mtdparts=" CONFIG_MTDPARTS_DEFAULT "\0" \
 	"linux_qspi_enable=if sf probe; then " \
@@ -406,3 +427,4 @@ unsigned int cm_get_l4_sys_free_clk_hz(void);
  */
 
 #endif	/* __CONFIG_SOCFPGA_SOC64_COMMON_H__ */
+
