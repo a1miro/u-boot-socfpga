@@ -1,0 +1,372 @@
+/*
+ * afe_regs_def.h
+ *
+ *  Created on: Jul 8, 2025
+ *      Author: autofom
+ */
+
+#ifndef INCLUDE_AFE_REGS_DEF_H_
+#define INCLUDE_AFE_REGS_DEF_H_
+
+#include <stdint.h>
+#include <stddef.h>
+
+ typedef struct
+     {
+      unsigned int tag_no;
+      const char *tag_name;
+      unsigned char reg_no;
+      unsigned char bit_ofs;
+      unsigned char bit_width;
+  } afe_reg_def_t;
+
+
+
+
+ enum {
+     // REG 1
+     REG001_GLOBAL_PDN,
+     REG001_DIS_LVDS,
+     REG001_LVDS_RATE_2X,
+     // REG2
+     REG002_OFFSET_CORR_DELAY_FROM_TX_TRIG,
+     REG002_SEL_PRBS_PAT_GBL,
+     REG002_PAT_MODES,
+     REG002_SEL_PRBS_PAT_FCLK,
+     REG002_AVG_EN,
+     REG002_LOW_LATENCY,
+     REG002_PAT_MODES_FCLK,
+     // REG3
+     REG003_DIG_OFFSET_EN,
+     REG003_OFFSET_CORR_DELAY_FROM_TX_TRIG,
+     REG003_DIG_GAIN_EN,
+     REG003_SER_DATA_RATE,
+     // REG 4
+     REG004_ADC_RES,
+     REG004_MSB_FIRST,
+     REG004_PRBS_EN,
+     REG004_PBRS_MODE,
+     REG004_PRBS_SYNC,
+     REG004_PAT_SELECT_IND,
+     REG004_AUTO_OFFET_REMOVAL_ACC_CYCLES,
+     REG004_OFFSET_REMOVAL_START_MANUAL,
+     REG004_OFFSET_REMOVAL_START_SEL,
+     REG004_OFFSET_REMOVAL_SELF,
+     // REG5
+     REG005_CUSTOM_PATTERN,
+     // REG6
+     // REG7
+     REG007_CHOPPER_EN,
+     REG007_AUTO_OFFSET_REMOVAL_VAL_RD_CH_SEL,
+     // REG8
+     REG008_AUTO_OFFSET_REMOVAL_VAL_RD,
+     // REG 11
+     REG011_EN_DITHER,
+     // REG 13
+     REG013_OFFSET_CH1,
+     REG013_GAIN_CH1,
+     // REG 14
+     REG014_OFFSET_CH1,
+     // REG 15
+     REG015_OFFSET_CH2,
+     REG015_GAIN_CH2,
+     // REG 16
+     REG016_OFFSET_CH2,
+
+     // REG 17
+     REG017_OFFSET_CH3,
+     REG017_GAIN_CH3,
+     // REG 18
+     REG018_OFFSET_CH3,
+     // REG 19
+     REG019_OFFSET_CH4,
+     REG019_GAIN_CH4,
+     // REG 20
+     REG020_OFFSET_CH4,
+     // REG 21
+     REG021_DIG_HPF_EN_CH1_CH4,
+     REG021_HPF_CORNER_CH1_CH4,
+     REG021_HPF_ROUND_EN_CH1_CH4,
+     REG021_PAT_LVDS2,
+     REG021_PAT_LVDS1,
+     REG021_PAT_PRBS_LVDS4,
+     REG021_PAT_PRBS_LVDS3,
+     REG021_PAT_PRBS_LVDS2,
+     REG021_PAT_PRBS_LVDS1,
+     //REG 23
+     REG023_PAT_LVDS4,
+     REG023_PAT_LVDS3,
+     // REG 23
+     REG024_INVERT_LVDS1,
+     REG024_INVERT_LVDS2,
+     REG024_INVERT_LVDS3,
+     REG024_INVERT_LVDS4,
+     REG024_PDN_ANA_CH1,
+     REG024_PDN_ANA_CH2,
+     REG024_PDN_ANA_CH3,
+     REG024_PDN_ANA_CH4,
+     REG024_PDN_LVDS1,
+     REG024_PDN_LVDS2,
+     REG024_PDN_LVDS3,
+     REG024_PDN_LVDS4,
+     REG024_PDN_DIG_CH1,
+     REG024_PDN_DIG_CH2,
+     REG024_PDN_DIG_CH3,
+     REG024_PDN_DIG_CH4,
+     // REG 25
+     REG025_OFFSET_CH5,
+     REG025_GAIN_CH5,
+     // REG 26
+     REG026_OFFSET_CH5,
+     // REG 27
+     REG027_OFFSET_CH6,
+     REG027_GAIN_CH6,
+     // REG 28
+     REG028_OFFSET_CH6,
+     // REG 29
+     REG029_OFFSET_CH7,
+     REG029_GAIN_CH7,
+     // REG 30
+     REG030_OFFSET_CH7,
+     // REG 31
+     REG031_OFFSET_CH8,
+     REG031_GAIN_CH8,
+     // REG 32
+     REG032_OFFSET_CH8,
+     // REG 33
+     REG033_DIG_HPF_EN_CH5_CH9, // 33, 0, 1
+     REG033_HPF_CORNER_CH5_CH8, // 33, 1, 4
+     REG033_PAT_LVDS6,          // 33, 6, 2
+     REG033_PAT_LVDS5,          // 33, 9, 2
+     REG033_PAT_PRBS_LVDS8,     // 33, 12, 1
+     REG033_PAT_PRBS_LVDS7,// 33, 13, 1
+     REG033_PAT_PRBS_LVDS6,// 33, 14, 1
+     REG033_PAT_PRBS_LVDS5,// 33, 15, 1
+     // REG 34
+     // REG 35
+     REG035_PAT_LVDS8, //33, 2, 2
+     REG035_PAT_LVDS7, //33, 5, 2
+     // REG 36
+     REG036_INVERT_LVDS5, //36, 0, 1
+     REG036_INVERT_LVDS6,//36, 1, 1
+     REG036_INVERT_LVDS7,//36, 2, 1
+     REG036_INVERT_LVDS8,//36, 3, 1
+     REG036_PDN_ANA_CH5,//36, 4, 1
+     REG036_PDN_ANA_CH6,//36, 5, 1
+     REG036_PDN_ANA_CH7,//36, 6, 1
+     REG036_PDN_ANA_CH8,//36, 7, 1
+     REG036_PDN_LVDS5,//36, 8, 1
+     REG036_PDN_LVDS6,//36, 9, 1
+     REG036_PDN_LVDS7,//36, 10, 1
+     REG036_PDN_LVDS8,//36, 11, 1
+     REG036_PDN_DIG_CH5,//36, 12, 1
+     REG036_PDN_DIG_CH6,//36, 13, 1
+     REG036_PDN_DIG_CH7,//36, 14, 1
+     REG036_PDN_DIG_CH8,//36, 15, 1
+     // REG 37
+     REG037_OFFSET_CH9,
+     REG037_GAIN_CH9,
+     // REG 38
+     REG038_OFFSET_CH9,
+     // REG 39
+     REG039_OFFSET_CH10,
+     REG039_GAIN_CH10,
+     // REG 40
+     REG040_OFFSET_CH10,
+     // REG 41
+     REG041_OFFSET_CH11,
+     REG041_GAIN_CH11,
+     // REG 42
+     REG042_OFFSET_CH11,
+     // REG 43
+     REG043_OFFSET_CH12,
+     REG043_GAIN_CH12,
+     // REG 44
+     REG044_OFFSET_CH12,
+     // REG 45
+     REG045_DIG_HPF_EN_CH9_CH12, // 45, 0, 1
+     REG045_HPF_CORNER_CH9_CH12, // 45, 1, 4
+     REG045_HPF_ROUND_EN_CH9_CH16, //45, 5, 1
+     REG045_PAT_LVDS10,          // 45, 6, 2
+     REG045_PAT_LVDS9,           // 45, 9, 2
+     REG045_PAT_PRBS_LVDS12,     // 45, 12, 1
+     REG045_PAT_PRBS_LVDS11,// 45, 13, 1
+     REG045_PAT_PRBS_LVDS10,// 45, 14, 1
+     REG045_PAT_PRBS_LVDS9, // 45, 15, 1
+     // REG 46
+     // REG 47
+     REG047_PAT_LVDS12, // 47, 2, 2
+     REG047_PAT_LVDS11, // 47, 5, 2
+     // REG 48
+     REG048_INVERT_LVDS9, //48, 0, 1
+     REG048_INVERT_LVDS10,//48, 1, 1
+     REG048_INVERT_LVDS11,//48, 2, 1
+     REG048_INVERT_LVDS12,//48, 3, 1
+     REG048_PDN_ANA_CH9,//48, 4, 1
+     REG048_PDN_ANA_CH10,//48, 5, 1
+     REG048_PDN_ANA_CH11,//48, 6, 1
+     REG048_PDN_ANA_CH12,//48, 7, 1
+     REG048_PDN_LVDS9,//48, 8, 1
+     REG048_PDN_LVDS10,//48, 9, 1
+     REG048_PDN_LVDS11,//48, 10, 1
+     REG048_PDN_LVDS12,//48, 11, 1
+     REG048_PDN_DIG_CH9,//48, 12, 1
+     REG048_PDN_DIG_CH10,//48, 13, 1
+     REG048_PDN_DIG_CH11,//48, 14, 1
+     REG048_PDN_DIG_CH12,//48, 15, 1
+     // REG 49
+     REG049_OFFSET_CH13,
+     REG049_GAIN_CH13,
+     // REG 50
+     REG051_OFFSET_CH13,
+     // REG 51
+     REG051_OFFSET_CH14,
+     REG051_GAIN_CH14,
+     // REG 52
+     REG052_OFFSET_CH14,
+     // REG 53
+     REG053_OFFSET_CH15,
+     REG053_GAIN_CH15,
+     // REG 54
+     REG054_OFFSET_CH15,
+     // REG 55
+     REG055_OFFSET_CH16,
+     REG055_GAIN_CH16,
+     // REG 56
+     REG056_OFFSET_CH16,
+     // REG 57
+     REG057_DIG_HPF_EN_CH13_CH16, // 57, 0, 1
+     REG057_HPF_CORNER_CH13_CH16, // 57, 1, 2
+     REG057_PAT_LVDS14,          // 57, 6, 2
+     REG057_PAT_LVDS13,           // 57, 9, 2
+     REG057_PAT_PRBS_LVDS16,     // 57, 12, 1
+     REG057_PAT_PRBS_LVDS15,// 57, 13, 1
+     REG057_PAT_PRBS_LVDS14,// 57, 14, 1
+     REG057_PAT_PRBS_LVDS13, // 57, 15, 1
+     // REG 59
+     REG059_PAT_LVDS16, //59,2,2
+     REG059_PAT_LVDS15, //59,5,2
+     // REG 60
+     REG060_INVERT_LVDS13, //60, 0, 1
+     REG060_INVERT_LVDS14,//60, 1, 1
+     REG060_INVERT_LVDS15,//60, 2, 1
+     REG060_INVERT_LVDS16,//60, 3, 1
+     REG060_PDN_ANA_CH13,//60, 4, 1
+     REG060_PDN_ANA_CH14,//60, 5, 1
+     REG060_PDN_ANA_CH15,//60, 6, 1
+     REG060_PDN_ANA_CH16,//60, 7, 1
+     REG060_PDN_LVDS13,//60, 8, 1
+     REG060_PDN_LVDS14,//60, 9, 1
+     REG060_PDN_LVDS15,//60, 10, 1
+     REG060_PDN_LVDS16,//60, 11, 1
+     REG060_PDN_DIG_CH13,//60, 12, 1
+     REG060_PDN_DIG_CH14,//60, 13, 1
+     REG060_PDN_DIG_CH15,//60, 14, 1
+     REG060_PDN_DIG_CH16,//60, 15, 1
+     // REG 65
+     REG065_PLLRST1,    // 65,15,1
+     // REG 66
+     REG066_PLLRST2,    // 66,15,1
+     // REG 67
+     REG067_LVDS_DCLK_DELAY_PROG, //67,1,3
+      // REG 197
+     REG197_POW_MODE, // 197, 0,1
+     REG197_LNA_GAIN, // 197,1,2
+     REG197_LNA_HPF_DIS, // 197,4,1
+     REG197_LNA_HPF_PROG, // 197, 5,4
+     REG197_LPF_PROG, // 197, 9,3
+     REG197_PGA_GAIN, // 197,12,2
+     REG197_PDN_LNA, // 197, 15,1
+     // REG 198
+     REG198_PDWN_VCA_PGA,  // 198, 0, 1
+     REG198_FAST_PDWN,    // 198, 1, 1
+     REG198_GBL_PWDN,     // 198, 2, 1
+     REG198_ACT_TERM_EN,     // 198, 3, 1
+     REG198_GBL_ACTIVE_TERM,  // 198,4,2
+     REG198_ACT_TERM_IND_RES_EN,  // 198, 6, 1
+     REG198_ACT_TERM_IND_PROG,   // 198, 7, 7
+     REG198_CL_LVL2,      // 198, 14, 1
+     REG198_CL_LVL1,      // 198, 15, 1
+     // REG 201
+     REG201_CW_TGC_SEL,   // 201, 0, 1
+     REG201_DIS_CW_AMP,   // 201, 1, 1
+     REG201_CW_CLK_MODE,  // 201, 2, 1
+     REG201_16X_CLK_BUF_MODE, // 201, 5, 1
+     REG201_1X_CLK_BUF_MODE,  // 201, 6, 1
+     REG201_CW_SUM_AMP_GAIN,   // 201, 7, 6
+     REG201_CW_HPF_EN,         // 201, 13, 1
+     REG201_CW_HPF_FB_RES,     // 201, 14, 2
+     // REG 202
+     REG202_CW_MIX_PH_CH1,     // 202, 0,4
+     REG202_CW_MIX_PH_CH2,     // 202, 4,4
+     REG202_CW_MIX_PH_CH3,     // 202, 8,4
+     REG202_CW_MIX_PH_CH4,     // 202, 12,4
+     // REG 203
+     REG203_CW_MIX_PH_CH5,     // 203, 0,4
+     REG203_CW_MIX_PH_CH6,     // 203, 4,4
+     REG203_CW_MIX_PH_CH7,     // 203, 8,4
+     REG203_CW_MIX_PH_CH8,     // 203, 12,4
+     // REG 204
+     REG204_CW_MIX_PH_CH9,     // 204, 0,4
+     REG204_CW_MIX_PH_CH10,     // 204, 4,4
+     REG204_CW_MIX_PH_CH11,     // 204, 8,4
+     REG204_CW_MIX_PH_CH12,     // 204, 12,4
+     // REG 205
+     REG205_CW_MIX_PH_CH13,     // 205, 0,4
+     REG205_CW_MIX_PH_CH14,     // 205, 4,4
+     REG205_CW_MIX_PH_CH15,     // 205, 8,4
+     REG205_CW_MIX_PH_CH16,     // 205, 12,4
+     // REG 206
+     REG206_TGC_PROFILE_ENABLE, // 206, 1, 1
+     REG206_TGC_PROFILE_REG_CTRL, // 206, 2, 1
+     REG206_TGC_PROFILE_SEL,      // 206, 3, 2
+     REG206_DIG_TGC_ATTENUATION,  // 206, 11, 4
+     REG206_EN_DIG_TGC,           // 206, 15, 1
+     // REG 207
+     REG207_PDN_CH1,   // 207, 0, 1
+     REG207_PDN_CH2,   // 207, 1, 1
+     REG207_PDN_CH3,   // 207, 2, 1
+     REG207_PDN_CH4,   // 207, 3, 1
+     REG207_PDN_CH5,   // 207, 4, 1
+     REG207_PDN_CH6,   // 207, 5, 1
+     REG207_PDN_CH7,   // 207, 6, 1
+     REG207_PDN_CH8,   // 207, 7, 1
+     REG207_PDN_CH9,   // 207, 8, 1
+     REG207_PDN_CH10,   // 207, 9, 1
+     REG207_PDN_CH11,   // 207, 10, 1
+     REG207_PDN_CH12,   // 207, 11, 1
+     REG207_PDN_CH13,   // 207, 12, 1
+     REG207_PDN_CH14,   // 207, 13, 1
+     REG207_PDN_CH15,   // 207, 14, 1
+     REG207_PDN_CH16,   // 207, 15, 1
+     // REG 208
+     REG208_EN_TEMP_SENSE,     // 208, 2,1
+     REG208_STARTE_TEMP_SENSE,  // 208, 5,1
+     REG208_READ_TEMP_SENSE,    // 208, 6, 9
+     // REG 221
+     REG221_CL_LVL3,    /// 221, 9, 1
+     // REG 232
+     REG232_TGC_PROFILE0_HI,   // 232, 0, 16
+     // REG 233
+     REG233_TGC_PROFILE0_LO,   // 232, 0, 8
+     // REG 234
+     REG234_TGC_PROFILE1_HI,   // 234, 0, 16
+     // REG 235
+     REG235_TGC_PROFILE1_LO,   // 235, 0, 8
+     // REG 236
+     REG236_TGC_PROFILE2_HI,   // 236, 0, 16
+     // REG 237
+     REG237_TGC_PROFILE2_LO,   // 237, 0, 8
+     // REG 238
+     REG238_TGC_PROFILE3_HI,   // 238, 0, 16
+     // REG 239
+     REG239_TGC_PROFILE3_LO,   // 239, 0, 8
+ };
+
+extern afe_reg_def_t *afe_reg_defs_ptr();
+extern size_t  afe_reg_defs_size();
+extern const unsigned char * afe_active_regs_ptr();
+extern size_t afe_active_regs_size();
+
+
+#endif /* LIB_SCANNER_NEW_INCLUDE_AFE_REGS_DEF_H_ */
