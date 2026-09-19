@@ -178,10 +178,6 @@
 	cap-mmc-highspeed;
 };
 
-&combophy0 {
-	status = "okay";
-};
-
 &uart0 {
 	status = "okay";
 };

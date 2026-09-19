@@ -45,7 +45,7 @@ void board_init_f(ulong dummy)
 	/* Enable Async */
 	asm volatile("msr daifclr, #4");
 
-#ifdef CONFIG_SPL_BUILD
+#if defined(CONFIG_SPL_BUILD) && defined(CONFIG_SPL_RECOVER_DATA_SECTION)
 	spl_save_restore_data();
 #endif
 

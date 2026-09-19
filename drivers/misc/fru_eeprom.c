@@ -2,6 +2,7 @@
 #include <command.h>
 #include <i2c.h>
 #include <iG_fru.h>
+#include <asm/byteorder.h>
 #include <stdlib.h>
 #include <ctype.h> 
 #include <vsprintf.h>
@@ -163,9 +164,7 @@ int ascii2six(unsigned char **dest, unsigned char *src, size_t size)
                         k |= e[i + 3] << 18;
                 }
 #ifndef __MINGW32__
-#if __BYTE_ORDER == __BIG_ENDIAN
-                k = __bswap_32(k);
-#endif
+                k = cpu_to_le32(k);
 #endif
                 memcpy(p, &k, 3);
                 p += 3;
