@@ -386,6 +386,45 @@ U_BOOT_PHY_DRIVER(ksz9031) = {
 	.readext = &ksz9031_phy_extread,
 };
 
+
+static int lan8830_config(struct phy_device *phydev)
+{
+	int val;
+
+	/* 1. Force the system interface status layout to RGMII-ID 
+	   so core functions handle structural dependencies correctly */
+	phydev->interface = PHY_INTERFACE_MODE_RGMII_ID;
+
+	/* 2. Read Microchip's custom RGMII Delay Control Register: MMD 2, Reg 0x4D */
+	val = phy_read_mmd(phydev, 2, 0x4d);
+	if (val < 0)
+		return val;
+
+	/* 3. Configure Internal Clock Delays:
+	      Bit 14 = Clear to 0 to ENABLE internal TX Clock Delay (2.0ns)
+	      Bit 15 = Clear to 0 to ENABLE internal RX Clock Delay (2.0ns) */
+	val &= ~(BIT(14) | BIT(15));
+
+	/* Write back the targeted hardware bits to activate skews */
+	phy_write_mmd(phydev, 2, 0x4d, val);
+
+	/* 4. Fall back to standard gigabit auto-negotiation advertisement profiles */
+	return genphy_config(phydev);
+}
+
+
+U_BOOT_PHY_DRIVER(lan8830) = {
+	.name = "Microchip LAN8830",
+	.uid  = PHY_ID_LAN8830,
+	.mask = 0xffffff10,
+	.features = PHY_GBIT_FEATURES,
+	.config   = &lan8830_config,
+	.startup  = &ksz90xx_startup,
+	.shutdown = &genphy_shutdown,
+	.writeext = &ksz9031_phy_extwrite,
+	.readext = &ksz9031_phy_extread,
+};
+
 /*
  * KSZ9131
  */

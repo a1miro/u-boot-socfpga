@@ -31,7 +31,7 @@
 
 #define PHY_ID_KSZ9031				0x00221620
 #define PHY_ID_KSZ9131				0x00221640
-
+#define PHY_ID_LAN8830                         0x00221650
 /* Registers */
 #define MMD_ACCESS_CONTROL	0xd
 #define MMD_ACCESS_REG_DATA	0xe
